@@ -66,15 +66,30 @@ All experiments were executed on a GPU to accelerate computation.
 
 ## Evaluation and Results
 
-The model achieved strong performance with an overall test accuracy of approximately 94.5 percent.  
-Performance was evaluated using multiple metrics, including precision, recall, F1-score, and confusion matrix.  
-The results indicate that the model successfully distinguishes between different tumor types and healthy cases with minimal misclassifications.
+The model achieved an overall **accuracy of 94%** on the test set.  
+Performance metrics, including precision, recall, and F1-score, were computed for each tumor category as shown below.
+
+| Class             | Precision | Recall | F1-Score | Support |
+|-------------------|------------|---------|-----------|----------|
+| Glioma Tumor      | 0.99       | 0.81    | 0.89      | 400      |
+| Meningioma Tumor  | 0.87       | 1.00    | 0.93      | 421      |
+| No Tumor          | 0.94       | 1.00    | 0.97      | 510      |
+| Pituitary Tumor   | 1.00       | 0.94    | 0.97      | 374      |
+| **Overall Accuracy** | **0.94** | — | — | **1705** |
+| **Macro Average** | 0.95 | 0.94 | 0.94 | 1705 |
+| **Weighted Average** | 0.95 | 0.94 | 0.94 | 1705 |
+
+
+The results indicate that the model performs consistently across all tumor categories.  
+Glioma detection shows slightly lower recall (0.81), meaning a few glioma samples were misclassified, while the other tumor types achieve near-perfect recognition.  
+High macro and weighted averages confirm that the model maintains balanced precision and recall across all classes.
+
 
 ### Accuracy and Loss Curves
 
 The following figure shows the evolution of training and validation loss and accuracy over the training epochs:
 
-![Training Curves](./55e1acab-0eca-48e7-a56c-baa31df05dc2.png)
+![Training Curves](image/eval.png)
 
 ---
 
@@ -87,16 +102,12 @@ Below are examples illustrating Grad-CAM visualizations applied to MRI images.
 
 ### Glioma Tumor Example
 
-| Original Image | Grad-CAM Visualization |
-|----------------|------------------------|
-| ![Glioma Original](./c6d217f8-a112-4d6f-a530-8dfa7adebc29.png) | ![Glioma Grad-CAM](./c6d217f8-a112-4d6f-a530-8dfa7adebc29.png) |
+
+| ![Glioma Original](image/ex_g.png) 
 
 ### Meningioma Tumor Example
 
-| Original Image | Grad-CAM Visualization |
-|----------------|------------------------|
-| ![Meningioma Original](./54f01a7c-8d13-4a7b-852f-bb34f8091aa6.png) | ![Meningioma Grad-CAM](./54f01a7c-8d13-4a7b-852f-bb34f8091aa6.png) |
-
+| ![Meningioma Original](image/ex_m.png) 
 The Grad-CAM maps confirm that the model focuses on the tumor regions within the MRI scans rather than unrelated background details, demonstrating meaningful interpretability.
 
 ---
